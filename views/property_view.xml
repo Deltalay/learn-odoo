@@ -7,6 +7,7 @@
             <field name="arch" type="xml">
                 <tree>
                     <field name="name" />
+                    <field name="type_id" />
                     <field name="postcode" />
                     <field name="date_availability" />
                     <field name="expected_price" />
@@ -23,6 +24,7 @@
                         <group>
                             <field name="name" />
                             <group>
+                                <field name="type_id" />
                                 <field name="postcode" />
                                 <field name="date_availability" />
                             </group>
@@ -41,7 +43,6 @@
             <field name="res_model">estate.property</field>
             <field name="view_mode">tree,form</field>
             <field name="view_id" ref="estate_property_tree_view" />
-
             <field name="help" type="html">
                 <p class="o_view_nocontent_smiling_face">
                     Create a Property to Advertise

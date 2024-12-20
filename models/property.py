@@ -3,6 +3,7 @@ class Property(models.Model):
 	_name = 'estate.property'
 	_description = "Real estate property"
 	name = fields.Char(string="Name")
+	type_id = fields.Many2one('estate.property.type', string="Property Type")
 	description = fields.Text(string="Description")
 	postcode = fields.Char(string="Postcode")
 	date_availability = fields.Date(string="Available From")
@@ -20,4 +21,9 @@ class Property(models.Model):
 	
 class PropertyType(models.Model):
 	_name= 'estate.property.type'
+	_description = 'Type of property'
+	name = fields.Char(string="Name", required=True)
+class PropertyTag(models.Model):
+	_name = 'estate.property.tag'
+	_description = 'Property tag'
 	name = fields.Char(string="Name", required=True)
