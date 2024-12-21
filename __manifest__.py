@@ -14,5 +14,6 @@
 		'views/menu_items.xml',
 		'views/property_type_view.xml',
 		'views/property_tag_view.xml'
-	]
+	],
+	"depends": ['base']
 }

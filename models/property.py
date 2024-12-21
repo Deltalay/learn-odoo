@@ -19,7 +19,9 @@ class Property(models.Model):
 	garden_orientation = fields.Selection(string="Garden Orientation", 
 		selection=[('north', 'North'), ('west', 'West'), ('south', "South"), ('east', "East")], 
 		help="This is your garden orientation. You can use compass to check it.")
-	
+	offer_ids = fields.One2many('estate.property.offer', 'property_id', string="Offers")
+	sales_id = fields.Many2one('res.users', string="Salesman")
+	buyer_id = fields.Many2one("res.partner", string="Buyer")
 class PropertyType(models.Model):
 	_name= 'estate.property.type'
 	_description = 'Type of property'
