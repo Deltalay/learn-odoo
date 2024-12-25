@@ -19,5 +19,6 @@
 	"demo": [
 		'demo/property_tag.xml'
 	],
-	"depends": ['base']
+	"depends": ['base'],
+	"license": 'GPL-3'
 }
