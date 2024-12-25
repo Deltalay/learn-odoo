@@ -22,6 +22,7 @@ class Property(models.Model):
 	offer_ids = fields.One2many('estate.property.offer', 'property_id', string="Offers")
 	sales_id = fields.Many2one('res.users', string="Salesman")
 	buyer_id = fields.Many2one("res.partner", string="Buyer")
+	phone = fields.Char(string="Phone", related='buyer_id.phone')
 	@api.onchange('living_area', 'garden_area')
 	def _onchange_total_area(self):
 		self.total_area = self.living_area + self.garden_area
