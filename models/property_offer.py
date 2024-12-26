@@ -1,5 +1,6 @@
 from odoo import fields, models, api
 import datetime
+from odoo.exceptions import ValidationError
 class PropertyOffer(models.Model):
 	_name = "estate.property.offer"
 	_description = "Property Offer"
@@ -21,3 +22,8 @@ class PropertyOffer(models.Model):
 	def _inverse_deadline(self):
 		for rec in self:
 			rec.validity = (rec.deadline - rec.createion_date).days
+	@api.constrains('deadline', 'createion_date')
+	def _check_validity(self):
+		for rec in self:
+			if rec.deadline <= rec.createion_date:
+				raise ValidationError(_('Deadline cannot be before or the same day as creation date'))
