@@ -9,6 +9,8 @@
                     <field name="name" />
                     <field name="type_id" />
                     <field name="postcode" />
+                    <field name="bedrooms"/>
+                    <field name="total_area" />
                     <field name="date_availability" />
                     <field name="expected_price" />
                     <field name="selling_price" />
