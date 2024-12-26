@@ -18,12 +18,20 @@ class PropertyOffer(models.Model):
 			if rec.createion_date and rec.validity:
 				rec.deadline = rec.createion_date + datetime.timedelta(days=rec.validity)
 			else:
-				rec.deadline = False;
+				rec.deadline = None;
 	def _inverse_deadline(self):
 		for rec in self:
-			rec.validity = (rec.deadline - rec.createion_date).days
+			if rec.deadline and rec.createion_date:
+				rec.validity = (rec.deadline - rec.createion_date).days
+	@api.model_create_multi
+	def create(self, vals):
+		for rec in vals:
+			if not rec.get('createion_date'):
+				rec['createion_date'] = fields.Date.today()
+		return super(PropertyOffer, self).create(vals)
 	@api.constrains('deadline', 'createion_date')
 	def _check_validity(self):
 		for rec in self:
 			if rec.deadline <= rec.createion_date:
-				raise ValidationError(_('Deadline cannot be before or the same day as creation date'))
+				raise ValidationError("Deadline cannot be beofore or equal to the creation date.")
+
